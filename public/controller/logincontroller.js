@@ -1,5 +1,4 @@
 chatApp.controller('loginController', function($scope, $http , $location){
-
     console.log('login');
     $scope.user={
         'email': '',
@@ -21,7 +20,13 @@ chatApp.controller('loginController', function($scope, $http , $location){
            console.log("successfull");
            $scope.message="login Successful";
            var token=response.data.token;
+           var  userid=response.data.userid;
+            console.log(userid);
+            console.log( localStorage.setItem("userid",userid));
+            console.log( localStorage.setItem("token",token));
            localStorage.setItem("token",token);
+           localStorage.setItem("userid",userid);
+        
            $location.path("/dashboard");
        }
        else if(response.status===400){

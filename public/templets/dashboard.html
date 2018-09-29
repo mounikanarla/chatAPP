@@ -9,16 +9,12 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <div class="first">
-    <div class="box1"> 
-    <div class="box2"></div>
+<div class="topbox"><p style="color:blue;font-size:40px;">CHATAPP</p><button class="buttonlog" ng-click="logout()">LOGOUT</button></a>
+</div>
+<div class="leftbox"><li ng-repeat="list in array">{{list}}</li></div>
+<div class="rightbox">
+   <div><input type="text" id="text"  placeholder="Type your text here">
+        <button class="send">SEND</button>
     </div>
-    <!-- <div class="box3"></div> -->
-    <table align="last"><tr>
-    <td><input type="text" name="text" class="type" placeholder="type your text here"/></td>
-    <td><button type="submit" name="button" class="button">SEND</button></td>
-     </tr>
-     <table>   
- </div>
+</div>
 </body>
-</html>

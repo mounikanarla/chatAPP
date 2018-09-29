@@ -1,5 +1,6 @@
 // Importing userSchema from models
 var usermodel=require('../models/userSchema');
+var usermodel=require("../models/chatSchema.js")
 var jwt=require('jsonwebtoken');
 /*
  * @function: function is used to encript the given argument
@@ -130,7 +131,7 @@ var registration = function(req,res){
 var login = function(req,res){
  try{
         var response={};
-        var secret="qwertpoiuytasdfg1234589";
+        var secret="vxcgnkdfgnkgnvnsdk2436fsdjgbjgb";
         usermodel.find({"email":req.body.email,"password":encrypt(req.body.password)},function(err,data){
         if(err)
         {
@@ -140,8 +141,9 @@ var login = function(req,res){
      
         else if(data.length>0)
             {
-                var token=jwt.sign({email:req.body.email,password:req.body.password},secret,{expiresIn:86400}); // expires in 24 hours})
+                var token=jwt.sign({email:req.body.email,password:req.body.password},secret,{expiresIn:864000 }); // expires in 24 hours})
                 response={"error": false,"token":token,"message":"login successful","userid":data[0]._id}; 
+                console.log(token);
             }
             else
             {
@@ -151,6 +153,7 @@ var login = function(req,res){
     
          });
     } catch(e){
+
         console.log(e);
         if (e instanceof ReferenceError 
             || e instanceof TypeError
@@ -180,12 +183,12 @@ try{
     var response={};
     var dataArray=[];
     var userid=req.params.id;
-    console.log(userid);
+    // console.log(userid);
     usermodel.find({"_id":{$ne:userid}},function(err,data){
-        console.log(data);
+        //  console.log(data);
         for(var i=0;i<data.length;i++)
         {
-            dataArray.push(response={email:data[i].email,userid:data[i]._id});
+            dataArray.push(response={firstname:data[i].firstname,userid:data[i]._id});
         }
         if(err)
         {
@@ -215,8 +218,53 @@ if (e instanceof ReferenceError
 }
 }
 }
+
+var addingChat=function(userid,username,message,dateTime)
+    {
+        var response={};
+        var db=new usermodel();
+        db.userid=userid;
+        db.username=username;
+        db.message=message;
+        db.dateTime=dateTime
+        db.save(function(err){
+        {
+            if(err)
+            {
+                response={
+                    "success":"false",
+                    "message":"error"
+                }
+            }else{
+                response={
+                    "success":true,
+                    "message":"message saved into the database"
+                }
+            };
+        
+            console.log(response);
+        
+    }
+})
+    }
+    
+    var chatList=function(req,res){
+        var response={};
+        usermodel.find({},function(err,data){
+        if(err){
+            response={"success":"false", "message":"error"}
+        }else{
+            response={"success":"true", "message":data}
+        }
+
+
+
+        })
+    }
 module.exports = {
     registration: registration,
     login: login,
-    usersList:usersList
+    usersList:usersList,
+    addingChat:addingChat,
+    chatList:chatList
 }
