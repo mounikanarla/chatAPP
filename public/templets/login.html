@@ -1,32 +1,30 @@
 <!-- the form-data is sent to the page specified in the action called register. -->
 <!-- <head><link rel="stylesheet"  href="../assests/class.css"></head> -->
-<body >
-<form method="post" action="register.html">
-<!-- The <div> element is often used as a container for a class box. -->
-<div class="box">
-<!--Declaring the heading CHATAPP with centre alignment with font  -->
-<h1 align="center" style ="font-family:'Times New Roman', Times, serif"><b>CHATAPP</b></h1>
-<!--Declaring the break statement -->
-<br>
-<div>
 
-<label><b>Email:</b> </label>
-<br>
-<!-- used to create interactive control for web-based forms from the user; -->
-<input type="email" name="email" placeholder="Enter your email " class="email" ng-model="user.email" /></div>
-<div>
-<label><b>Password:<b></label>
-  <br>
-<input type="password" name="password" placeholder="Enter your password " class="password" ng-model="user.password"/></div>
-<a href="#!/login"><div class="button1" ng-click="login()">Login</div></a>
-<a href="#!/register"><div class="button2" ng-click="register()">SIGN UP</div></a>
-<a href="">Forgot Password?</a>
+<body>
+  <form method="post" action="register.html">
+    <!-- The <div> element is often used as a container for a class box. -->
+    <div class="box">
+      <!--Declaring the heading CHATAPP with centre alignment with font  -->
+      <h1 align="center" style="font-family:'Times New Roman', Times, serif"><b>CHATAPP</b></h1>
+      <!--Declaring the break statement -->
+      <br>
+      <div>
 
-</div> 
-<p>{{message}}</p>
-</form>
+        <label><b>Email:</b> </label>
+        <br>
+        <!-- used to create interactive control for web-based forms from the user; -->
+        <input type="email" name="email" placeholder="Enter your email " class="email" ng-model="user.email" /></div>
+      <div>
+        <label><b>Password:<b></label>
+        <br>
+        <input type="password" name="password" placeholder="Enter your password " class="password" ng-model="user.password" /></div>
+      <a href="#!/login"><div class="button1" ng-click="login()">Login</div></a>
+      <a href="#!/register"><div class="button2" ng-click="register()">SIGN UP</div></a>
+      <a href="">Forgot Password?</a>
+
+    </div>
+    <p>{{message}}</p>
+  </form>
 
 </body>
-	
-	
-	

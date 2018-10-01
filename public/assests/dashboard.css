@@ -58,3 +58,13 @@ height: 80px;
 margin-left: 35px;
 overflow:scroll;
 }
+P{
+  font-size: 12px;
+  text-decoration: none;
+  color: BLACK;
+  font-size: 20px;
+}
+chatbox{
+  height:100px;
+  width:500px;
+}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +9,20 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../assests/dashboard.css" />
     <script src="main.js"></script>
 </head>
+
 <body>
-<div class="topbox"><p style="color:blue;font-size:40px;">CHATAPP</p><button class="buttonlog" ng-click="logout()">LOGOUT</button></a>
-</div>
-<div class="leftbox"><li ng-repeat="list in array">{{list}}</li></div>
-<div class="rightbox">
-   <div><input type="text" id="text"  placeholder="Type your text here">
-        <button class="send">SEND</button>
+    <div class="topbox">
+        <p style="color:blue;font-size:40px;">CHATAPP</p><button class="buttonlog" ng-click="logout()">LOGOUT</button></a>
     </div>
-</div>
+    <div class="leftbox">
+        <li ng-repeat="list in array">{{list}}</li>
+    </div>
+    <div class="rightbox" >
+        
+        <p class="chatbox" ng-repeat="chat in chat_array">{{chat.firstname}} : {{chat.message}}<br>
+            <span margin-right="30px"></span>{{chat.dateTime}}</span> </p>
+        <div><input type="text" id="text" placeholder="Type your text here" ng-model="message">
+            <button class="send" ng-click="add()">SEND</button>
+        </div>
+    </div>
 </body>

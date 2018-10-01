@@ -1,7 +1,7 @@
 var jwt = require('jsonwebtoken');
-var secret="vxcgnkdfgnkgnvnsdk2436fsdjgbjgb";
+var secret = "adcgffghfhgjgjhgfjdgsd34352rtrywrt";
 var auth = function (req, res, next) {
-   
+
     //next();
     var token = req.headers["token"];
     var response = {
@@ -14,7 +14,7 @@ var auth = function (req, res, next) {
             return res.status(401).send(response);
         }
         else {
-             console.log(decodedData);
+            console.log(decodedData);
             next();
         }
     });

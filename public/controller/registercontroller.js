@@ -1,33 +1,33 @@
-chatApp.controller('registerController', function($scope, $http){
-
+chatApp.controller('registerController', function ($scope, $http) {
+//binding the html view and register controller using scope
     console.log('register');
-    $scope.user={
-        'firstname':'',
-        'lastname':'',
+    $scope.user = {
+        'firstname': '',
+        'lastname': '',
         'email': '',
         'password': '',
-        'mobile':''
+        'mobile': ''
     }
     console.log($scope.user);
-    $scope.register = function(){
+    $scope.register = function () {
         console.log("register credential process", $scope.user);
-   $http({
-       method: 'POST',
-       url: '/register',
-       data: $scope.user
-   }).then(function(response){
-       console.log(response);
-       console.log(response.data);
-       console.log(response.data.error);
-        if(response.data.error==false){
-           console.log("successfull");
-           $scope.message="registration Successful";
-           $location.path("/login");
-       }
-       else if(response.status==400){
-           $scope.message="registration Unsuccessful"
-       }
-   })
-   }
-   
+        $http({
+            method: 'POST',
+            url: '/register',
+            data: $scope.user
+        }).then(function (response) {
+            console.log(response);
+            console.log(response.data);
+            console.log(response.data.error);
+            if (response.data.error == false) {
+                console.log("successfull");
+                $scope.message = "registration Successful";
+                $location.path("/login");
+            }
+            else if (response.status == 400) {
+                $scope.message = "registration Unsuccessful"
+            }
+        })
+    }
+
 });
