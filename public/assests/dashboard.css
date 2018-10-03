@@ -64,7 +64,55 @@ P{
   color: BLACK;
   font-size: 20px;
 }
-chatbox{
-  height:100px;
+.chatbox{
+  float:left;
   width:500px;
+  background-color:palevioletred;
+  border-radius:40px;
+}
+.chatboxright{
+  float:right;
+  width:500px;
+  background-color:palevioletred;
+  border-radius:40px;
+
+}
+.left{
+  float:left;
+   margin-right:40px;
+   padding-right: 25px;
+   padding-left:25px;
+   padding-top:10px;
+}
+.leftdate{
+  float:left;
+   margin-right:40px;
+   padding-right: 25px;
+   padding-left:25px;
+  }
+
+.right{
+   float:right;
+   margin-right:30px;
+   padding-right: 25px;
+   padding-left:25px;
+   padding-top:10px;
+}
+.rightdate{
+  float:right;
+   margin-right:30px;
+   padding-right: 25px;
+   padding-left:25px;
+
+}
+
+.list{
+  font-size: 30px;
+  height:50px;
+  width:100%;
+  background-color:lightblue
+}
+.buttonlist{
+ text-align:center;
+ padding-top:10px;
 }

@@ -2,8 +2,8 @@
  and services the data through browser*/
 chatApp.controller('boardController', function ($scope, $http, $location, SocketService) {
     // console.log(localStorage.getItem("token"));
-    console.log(localStorage.getItem("firstname"));
-    //
+    // console.log(localStorage.getItem("firstname"));
+    // 
     var usertoken = localStorage.getItem("token");
     var userid = localStorage.getItem("userid");
     var firstname = localStorage.getItem("firstname");
@@ -33,9 +33,11 @@ chatApp.controller('boardController', function ($scope, $http, $location, Socket
     $scope.add = function () {
         //  console.log($scope.message);
         if ($scope.message.length!= 0 ) {
+            
             SocketService.emit('chatbackend', { 'userid': userid, 'firstname': firstname, 'message': $scope.message, 'dateTime': new Date() });
             $scope.message=' ';
-        }
+        } 
+
 
     }
 

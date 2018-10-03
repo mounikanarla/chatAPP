@@ -25,11 +25,7 @@ chatApp.controller('loginController', function ($scope, $http, $location) {
                     var token = response.data.token;
                     var userid = response.data.userid;
                     var firstname = response.data.firstname;
-                    console.log("ghbjhbhgj", firstname);
-
-                    console.log(userid);
-                    console.log(localStorage.setItem("userid", userid));
-                    console.log(localStorage.setItem("token", token));
+                    
                     localStorage.setItem("token", token);
                     localStorage.setItem("userid", userid);
                     localStorage.setItem("firstname", firstname);

@@ -22,6 +22,10 @@ chatApp.config(function ($routeProvider) {
 			templateUrl: 'templets/dashboard.html',
 			controller: 'boardController'
 		})
+		.when('/peercontroller',{
+			templateUrl:'templets/peercontroller.html',
+			controller:'peertopeercontroller'
+		})
 		.otherwise({
 			redirectTo:'/error'
 		});
