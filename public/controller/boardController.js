@@ -1,9 +1,9 @@
 /* @function : controller is defined with a function for binding,communicating,providing path
  and services the data through browser*/
 chatApp.controller('boardController', function ($scope, $http, $location, SocketService) {
-    // console.log(localStorage.getItem("token"));
-    // console.log(localStorage.getItem("firstname"));
-    // 
+    console.log(localStorage.getItem("token"));
+    console.log(localStorage.getItem("firstname"));
+    console.log(localStorage.getItem("userid"))
     var usertoken = localStorage.getItem("token");
     var userid = localStorage.getItem("userid");
     var firstname = localStorage.getItem("firstname");
@@ -20,12 +20,13 @@ chatApp.controller('boardController', function ($scope, $http, $location, Socket
         // console.log(usertoken);
         // console.log(response);
         // console.log(response.data)
-        // console.log('response-->' + response);
+        console.log("in")
+        console.log(response.data.message);
         for (i = 1; i < (response.data.message).length; i++) {
-            array.push(response.data.message[i].firstname);
+            array.push(response.data.message[i]);
 
         }
-        // console.log('final array--' + array);
+         console.log(array);
     })
     $scope.array = array;
 
@@ -59,6 +60,18 @@ chatApp.controller('boardController', function ($scope, $http, $location, Socket
         $scope.chat_array = chat_array;
         // console.log($scope.chat_array);
     })
+    
+    $scope.receiver=function(userid,firstname){
+        // console.log("receiver");
+        // console.log(userid);
+        // console.log(firstname)
+        localStorage.setItem("receiverid",userid);
+        localStorage.setItem("receivername",firstname);
+        // console.log(userid);
+        // console.log(firstname)
+        $location.path('/peer');
+    }
+
 
     SocketService.on('chatroomClient', function (message) {
         // console.log('hii')
@@ -66,7 +79,6 @@ chatApp.controller('boardController', function ($scope, $http, $location, Socket
         $scope.chat_array.push(message)
         // console.log('chat_array---' + chat_array)
     });
-
 
 
     $scope.logout = function () {

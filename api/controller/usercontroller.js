@@ -353,60 +353,59 @@ var chatlist = function (req, res) {
  * @param {*} req 
  * @param {*} res 
  */
-var peerList = function (userid, recid,firstname, message, dateTime) {
-        try {
-            // Declaring the variables in order to store the responses
-            var response = {};
-            var dataArray = [];
-            // Returns the value of the parameter with the specified id.
-            var userid = req.params.id;
-            var recid=req.params.recid;
-            // console.log(userid);
-            // finding the id instances from the usermodel, if the id instance is not equal it is stored in data
-            peermodel.find({ "_id": userid , }, function (err, data) {
-                //  console.log(data);
-                // initailizing the for loop, storing the values of firstname,userid and pusing in array
-                for (var i = 0; i < data.length; i++) {
-                    dataArray.push(response = { firstname: data[i].firstname, userid: data[i]._id });
-                }
-                // if there is no data it prints the response as error
-                if (err) {
-                    response = { "error": true, "message": "Error in data retreiving" };
-                }
-                // if data is present it will display the data array
-                else {
-                    response = { "error": false, "message": dataArray, "userid": data[0]._id };
-                }
-                return res.status(200).send(response);
-            })
-            // catcing the errors based on error types
-        } catch (e) {
-            console.log(e);
-            if (e instanceof ReferenceError
-                || e instanceof TypeError
-                || e instanceof SyntaxError
-                || e instanceof RangeError) {
-                return res.json({
-                    "error": true,
-                    "message": "Something bad is happened in userslist "
-                });
-            } else {
-                return res.json({
-                    "error": true,
-                    "message": e.message
-                })
+var peertopeer=function(userid,firstname,receiverid,receivername,message,date)
+{
+    var response={};
+   var db=new peermodel();
+    db.userid=userid;
+    db.firstname=firstname;
+    db.receiverid=receiverid;
+    db.receivername=receivername;
+    db.message=message;
+    db.date=date;
+    db.save(function(err){
+        if(err)/**if error occurs then display the eroors */
+        {
+            response={
+                "error":"true",
+                "message":"error",
+                //"error":err
             }
         }
-    }
+        else{/**if error doesnot occur in adding the messages into the database then  */
+            response={
+                "error":"false",
+                "message":"message saved into the database"
+            }
+        };
     
-
-
+        console.log(response);
+    })
 }
+var peerchatlist=function(req,res){
+var respo={};
+var receiverid=req.params.receiverid;
+var userid=req.params.userid;
+
+peermodel.find({$or:[{'userid':userid,'receiverid':receiverid},{'userid':receiverid,'receiverid':userid}]},function(err,data){
+if(err){
+    respo={"error":"true", "message":"error"}
+}else{
+    respo={"error":"false", "message":data}
+    // console.log(data);
+}
+
+return res.status(200).send(respo);/**status=200 indicates ok */
+
+})
+}      
 
 module.exports = {
     registration: registration,
     login: login,
     usersList: usersList,
     addingChat: addingChat,
-    chatlist: chatlist
+    chatlist: chatlist,
+    peertopeer:peertopeer,
+    peerchatlist:peerchatlist
 }

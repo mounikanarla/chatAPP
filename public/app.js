@@ -22,8 +22,8 @@ chatApp.config(function ($routeProvider) {
 			templateUrl: 'templets/dashboard.html',
 			controller: 'boardController'
 		})
-		.when('/peercontroller',{
-			templateUrl:'templets/peercontroller.html',
+		.when('/peer',{
+			templateUrl:'templets/peer.html',
 			controller:'peertopeercontroller'
 		})
 		.otherwise({

@@ -1,6 +1,6 @@
   /********************* DASHBOARD ***********************/
  .topbox{
-   height:105px;
+   height:160px;
    width:1300px;
    background:lightpink;
    margin-top: -38px;
@@ -113,6 +113,29 @@ P{
   background-color:lightblue
 }
 .buttonlist{
- text-align:center;
- padding-top:10px;
+ text-align:left;
+ padding:10px;
+ width:250px;
+ background-color: aquamarine;
+ border: 2px solid black;
+ margin:5px;
+}
+.close{
+  float:left;
+  background:goldenrod;
+  width:100px;  padding-top:5px;
+  padding-bottom:5px;
+  text-align: center;
+  color:white;
+  border-radius:40px;
+  border: #5986da 1px solid;
+  
+  margin-top: 6px;
+  margin-bottom:20px;
+  margin-right:px;
+  float:left;
+  margin-left: 1145px;
+  font-weight:800;
+  font-size:0.8em;
+
 }

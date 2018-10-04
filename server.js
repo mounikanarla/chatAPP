@@ -32,5 +32,9 @@ io.on('connection', function(client) {
         io.emit('chatroomClient',data);
 
     })
+    client.on('chatpeerbackend',function(data){
+        users.peertopeer(data.userid,data.firstname,data.receiverid,data.receivername,data.message,data.date)
+        io.emit(data.receiverid,data)
+    })
 });
 console.log("Listening to port 5500");

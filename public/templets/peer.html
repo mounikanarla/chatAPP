@@ -12,23 +12,27 @@
 
 <body>
     <div class="topbox">
+        <i id="menu"{{userlogin}}:{{peerlogin}}></i>
         <p style="color:blue;font-size:40px;">CHATAPP</p><button class="buttonlog" ng-click="logout()">LOGOUT</button></a>
+        <button class="close" ng-click="close()">CLOSE</button>
     </div>
     <div class="leftbox">
+            <div>
+                <button class="buttonlist" ng-repeat="list in array" ng-click="receiver(list.user,list.userid)">{{list}}</button></div>
     </div>
-    <div class="rightbox" >
-        <div ng-repeat="chat in chat_array track by $index">
-        <p class="chatbox" ng-if="chat.firstname!=userlogin">
+        <div class="rightbox" >
+        <div ng-repeat="chat in chatArray track by $index">
+        <p class="chatbox" ng-if="chat.userid==loginuser">
             <span class="left">{{chat.firstname}} : {{chat.message}}</span><br>
-            <span class="leftdate">{{chat.dateTime}}</span> </p>
+            <span class="leftdate">{{chat.date}}</span> </p>
             <br>
-        <p class="chatboxright" ng-if="chat.firstname==userlogin">
+        <p class="chatboxright" ng-if="chat.userid!=loginuser">
                  <span class="right">{{chat.firstname}} : {{chat.message}}</span><br>
-                <span class="rightdate">{{chat.dateTime}}</span> </p>
+                <span class="rightdate">{{chat.date}}</span> </p>
         
         </div>
         <div><input type="text" id="text" placeholder="Type your text here" ng-model="message">
-            <button class="send" ng-click="add()">SEND</button>
+            <button class="send" ng-click="addpeer()">SEND</button>
         </div>
     </div>
 </body>
