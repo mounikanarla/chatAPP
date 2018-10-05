@@ -355,6 +355,7 @@ var chatlist = function (req, res) {
  */
 var peertopeer=function(userid,firstname,receiverid,receivername,message,date)
 {
+    // console.log(userid)
     var response={};
    var db=new peermodel();
     db.userid=userid;
@@ -386,6 +387,8 @@ var peerchatlist=function(req,res){
 var respo={};
 var receiverid=req.params.receiverid;
 var userid=req.params.userid;
+console.log(userid)
+console.log(receiverid)
 
 peermodel.find({$or:[{'userid':userid,'receiverid':receiverid},{'userid':receiverid,'receiverid':userid}]},function(err,data){
 if(err){

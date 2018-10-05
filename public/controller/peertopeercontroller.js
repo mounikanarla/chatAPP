@@ -1,8 +1,8 @@
 chatApp.controller('peertopeercontroller', function ($scope, $http, $location, SocketService) {
     // console.log(localStorage.getItem("token"));
-    // console.log(localStorage.getItem("userid"));
+     console.log(localStorage.getItem("userid"));
     // console.log(localStorage.getItem("firstname"));
-    // console.log(localStorage.getItem("receiverid"));
+     console.log(localStorage.getItem("receiverid"));
     // console.log(localStorage.getItem("receivername"));
     var usertoken = localStorage.getItem("token");
     var userid = localStorage.getItem("userid");
@@ -26,40 +26,43 @@ chatApp.controller('peertopeercontroller', function ($scope, $http, $location, S
     })
     $scope.array = array;
     // console.log($scope.array);
+   
 
     $http({
-
         method: 'GET',
-        url: '/auth/users/'+userid+'/peerchatlist/'+receiverid,
+        url: '/auth/peerchatlist/'+userid+'/and/'+receiverid,
         headers: {
             'token': usertoken
         }
     }).then(function (response) {
-
-        console.log(response.data.message);
-         $scope.chatArray = response.data.message;
-        
-     console.log($scope.chatArray);
-    })
-
-    $scope.addpeer = function () {
-        //  console.log($scope.message);
-        if ($scope.message.length!= 0 ) {
-            
-            SocketService.emit('chatpeerbackend', { 'userid': userid, 'firstname': firstname,'receiverid':receiverid,'receivername':receivername, 'message': $scope.message, 'date': new Date() });
-            $scope.chatArray.push({'userid': userid, 'firstname': firstname,'receiverid':receiverid,'receivername':receivername, 'message': $scope.message, 'date': new Date()})
-            // $scope.message=' ';
-        } 
-    }
+         console.log('response==',response);
+        $scope.chatArray= response.data.message;
+       console.log('db history--',$scope.chatArray)
+           })
+          
+     $scope.addpeer = function () {
+        console.log($scope.message);
+         if ($scope.message.length!= 0 ) {
+                
+                SocketService.emit('chatpeerbackend', { 'userid': userid, 'firstname': firstname,'receiverid':receiverid,'receivername':receivername, 'message': $scope.message, 'date': new Date() });
+                chatArray.push({'userid': userid, 'firstname': firstname,'receiverid':receiverid,'receivername':receivername, 'message': $scope.message, 'date': new Date()})
+                $scope.chatArray=chatArray;
+                $scope.message=' ';
+                console.log(chatArray);
+            } 
+        }
+      
    
     SocketService.on(userid, function (message) {
         // console.log('hii')
-        // console.log(message);
+    //  console.log(message);
         // if(userid=message.receiverid)
-    
-        $scope.chatArray.push(message)
-        console.log( $scope.chatArray.push(message));
-    
+
+        chatArray.push(message)
+        // console.log( chatArray.push(message))
+        $scope.chatArray=chatArray;
+        // console.log( $scope.chatArray.push(message));
+    // 
         // console.log('chat_array---' + chat_array)
     });
 

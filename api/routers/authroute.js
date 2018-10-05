@@ -8,5 +8,5 @@ var auth = require('../authentication');
 // getting the values from the database
 router.get('/users/:id/list', auth, users.usersList);
 router.get('/chatlist', auth, users.chatlist);
-router.get('/users/:id/peerchatlist/:receiverid',auth,users.peerchatlist);
+router.get('/peerchatlist/:userid/and/:receiverid',auth,users.peerchatlist);
 module.exports = router
